@@ -696,6 +696,7 @@ pub fn try_build(attributes: Attributes) -> Result<()> {
 
   println!("cargo:rustc-env=TAURI_ENV_TARGET_TRIPLE={target_triple}");
   // when running codegen in this build script, we need to access the env var directly
+  // FIXME: This can be accessed from multiple threads
   unsafe { env::set_var("TAURI_ENV_TARGET_TRIPLE", &target_triple) };
 
   let build_profile_dir = build_profile_dir_from_out_dir(&out_dir)

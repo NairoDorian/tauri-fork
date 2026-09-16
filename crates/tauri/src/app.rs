@@ -2415,6 +2415,7 @@ tauri::Builder::default()
         });
 
         if let Some(base_dir) = base_dir {
+          // SAFETY: Always safe on Windows
           unsafe {
             std::env::set_var("WEBVIEW2_BROWSER_EXECUTABLE_FOLDER", base_dir.join(path));
           }

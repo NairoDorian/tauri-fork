@@ -394,9 +394,7 @@ where
   P: AsRef<Path>,
   C: AsRef<[u8]>,
 {
-  if let Ok(existing) = std::fs::read(&path)
-    && existing == content.as_ref()
-  {
+  if std::fs::read(&path).is_ok_and(|existing| existing == content.as_ref()) {
     return Ok(());
   }
 
